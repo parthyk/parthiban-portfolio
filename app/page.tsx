@@ -3,6 +3,7 @@ import ProgressBar from "@/components/ProgressBar";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ChapterDesigner from "@/components/ChapterDesigner";
+import Portfolio from "@/components/Portfolio";
 import ChapterLearning from "@/components/ChapterLearning";
 import ChapterTurningPoint from "@/components/ChapterTurningPoint";
 import ChapterTeamLead from "@/components/ChapterTeamLead";
@@ -23,6 +24,7 @@ export default function Home() {
       <main>
         <Hero />
         <ChapterDesigner />
+        <Portfolio />
         <ChapterLearning />
         <ChapterTurningPoint />
         <ChapterTeamLead />

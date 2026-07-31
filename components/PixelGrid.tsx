@@ -12,8 +12,14 @@ type Props = {
 const ROWS = 9;
 const COLS = 26;
 
+const PALETTE = ["var(--accent)", "#8b5cf6", "#e3b955", "#4fd1c5", "#f26d71"];
+
 function isLit(i: number) {
   return (i * 7919 + 37) % 5 === 0;
+}
+
+function pixelColor(i: number) {
+  return PALETTE[(i * 7 + 3) % PALETTE.length];
 }
 
 export default function PixelGrid({ className = "", x, y }: Props) {
@@ -25,13 +31,16 @@ export default function PixelGrid({ className = "", x, y }: Props) {
     >
       {Array.from({ length: ROWS * COLS }).map((_, i) => {
         const lit = isLit(i);
+        const color = lit ? pixelColor(i) : "var(--line-strong)";
         return (
           <span
             key={i}
             className={`aspect-square rounded-[2px] ${lit ? "animate-pixel" : ""}`}
             style={{
-              backgroundColor: lit ? "var(--accent)" : "var(--line-strong)",
-              animationDelay: `${(i % 7) * 0.4}s`,
+              backgroundColor: color,
+              boxShadow: lit ? `0 0 8px 1px ${color}` : undefined,
+              animationDelay: lit ? `${(i % 13) * 0.42}s` : undefined,
+              animationDuration: lit ? `${2 + (i % 4) * 0.8}s` : undefined,
             }}
           />
         );

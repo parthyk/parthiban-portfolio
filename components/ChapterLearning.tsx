@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { animate, motion, useInView, useMotionValue } from "framer-motion";
 import { PenTool, Palette, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Chapter from "@/components/Chapter";
@@ -14,6 +15,35 @@ const ICONS: Record<string, LucideIcon> = {
   craft: Palette,
   future: Sparkles,
 };
+
+function SkillBar({ level, delay }: { level: number; delay: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const scaleX = useMotionValue(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(scaleX, level / 100, {
+      duration: 1.1,
+      delay,
+      ease: EASE,
+    });
+    return () => controls.stop();
+  }, [inView, level, delay, scaleX]);
+
+  return (
+    <div
+      ref={ref}
+      className="h-[3px] w-full overflow-hidden rounded-full"
+      style={{ backgroundColor: "var(--line)" }}
+    >
+      <motion.div
+        className="h-full origin-left rounded-full"
+        style={{ scaleX, backgroundColor: "var(--accent)" }}
+      />
+    </div>
+  );
+}
 
 export default function ChapterLearning() {
   return (
@@ -60,23 +90,7 @@ export default function ChapterLearning() {
                             {s.level}
                           </span>
                         </div>
-                        <div
-                          className="h-[3px] w-full overflow-hidden rounded-full"
-                          style={{ backgroundColor: "var(--line)" }}
-                        >
-                          <motion.div
-                            className="h-full origin-left rounded-full"
-                            style={{ backgroundColor: "var(--accent)" }}
-                            initial={{ scaleX: 0 }}
-                            whileInView={{ scaleX: s.level / 100 }}
-                            viewport={{ once: true, margin: "-10% 0px" }}
-                            transition={{
-                              duration: 1.1,
-                              delay: si * 0.06,
-                              ease: EASE,
-                            }}
-                          />
-                        </div>
+                        <SkillBar level={s.level} delay={si * 0.06} />
                       </div>
                     ))}
                   </div>
