@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f4f3f0;
+  --bg-soft: #ebe9e5;
+  --bg-card: #fcfcfb;
+  --ink: #141418;
+  --ink-soft: #3b3b44;
+  --muted: #71717c;
+  --line: rgba(20, 20, 26, 0.1);
+  --line-strong: rgba(20, 20, 26, 0.24);
+  --accent: #4f6ef7;
+  --accent-soft: rgba(79, 110, 247, 0.1);
+  --glow: rgba(79, 110, 247, 0.15);
+  --shadow: 0 24px 80px -32px rgba(20, 20, 26, 0.3);
+}
+
+html[data-theme="dark"] {
+  --bg: #0a0a0d;
+  --bg-soft: #101014;
+  --bg-card: #16161c;
+  --ink: #f1f0ec;
+  --ink-soft: #c8c7c3;
+  --muted: #8a8a95;
+  --line: rgba(241, 240, 236, 0.1);
+  --line-strong: rgba(241, 240, 236, 0.26);
+  --accent: #8ba3ff;
+  --accent-soft: rgba(139, 163, 255, 0.12);
+  --glow: rgba(139, 163, 255, 0.16);
+  --shadow: 0 24px 80px -32px rgba(0, 0, 0, 0.7);
+}
+
+@property --accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #4f6ef7;
+}
+
+@property --accent-soft {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(79, 110, 247, 0.1);
+}
+
+@property --glow {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(79, 110, 247, 0.15);
+}
+
+:root {
+  transition: --accent 0.8s ease, --accent-soft 0.8s ease, --glow 0.8s ease;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  transition: background-color 0.7s ease, color 0.7s ease;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@layer components {
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .label-accent {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .glass {
+    background-color: color-mix(in srgb, var(--bg) 76%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@keyframes pixel-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes scroll-dot {
+  0% {
+    transform: translateY(-110%);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+}
+
+.animate-pixel {
+  animation: pixel-pulse 3.4s ease-in-out infinite;
+}
+
+.animate-scroll-dot {
+  animation: scroll-dot 2.2s ease-in-out infinite;
+}
