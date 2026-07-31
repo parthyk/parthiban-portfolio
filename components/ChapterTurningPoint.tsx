@@ -70,7 +70,6 @@ export default function ChapterTurningPoint() {
       data-chapter="03"
       data-accent="violet"
       className="relative overflow-hidden"
-      style={{ backgroundColor: "#0c0a14", color: "#f1f0ec" }}
     >
       <div ref={ref} className="relative mx-auto max-w-4xl px-6 py-24 md:py-36">
         <div className="mb-16 text-center md:mb-20">
@@ -100,10 +99,10 @@ export default function ChapterTurningPoint() {
                 <span
                   className="absolute left-0 top-1 block h-3 w-3 rounded-full border-2 transition-colors duration-500"
                   style={{
-                    backgroundColor: active ? "var(--accent)" : "#0a0a0d",
+                    backgroundColor: active ? "var(--accent)" : "var(--bg)",
                     borderColor: active
                       ? "var(--accent)"
-                      : "rgba(241,240,236,0.35)",
+                      : "var(--line-strong)",
                     boxShadow: active
                       ? "0 0 0 6px rgba(167,139,250,0.14)"
                       : undefined,
