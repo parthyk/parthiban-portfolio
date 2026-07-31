@@ -78,7 +78,7 @@ export default function Contact() {
             <div className="mt-12 flex justify-center">
               <Magnetic strength={0.4}>
                 <a
-                  href={`mailto:${profile.email}`}
+                  href={`tel:${profile.phone.replace(/\s/g, "")}`}
                   className="group inline-flex items-center gap-3 rounded-full bg-ink px-9 py-4 font-serif text-lg text-bg transition-shadow hover:shadow-[var(--shadow)]"
                 >
                   Let&rsquo;s Create Together

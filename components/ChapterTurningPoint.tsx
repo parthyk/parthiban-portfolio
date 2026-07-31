@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 import PixelGrid from "@/components/PixelGrid";
-import { EASE } from "@/lib/motion";
 
 const STATEMENTS = [
   {
@@ -25,46 +24,60 @@ const STATEMENTS = [
   },
 ];
 
-const DURATION = 4000;
-
 export default function ChapterTurningPoint() {
-  const [active, setActive] = useState(0);
-  const [inView, setInView] = useState(false);
-  const [hovering, setHovering] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.35 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+  const s1Opacity = useTransform(scrollYProgress, [0, 0.2, 0.26], [1, 1, 0]);
+  const s1Y = useTransform(scrollYProgress, [0, 0.26], [0, -32]);
 
-  useEffect(() => {
-    if (!inView || hovering) return;
-    const id = window.setTimeout(() => {
-      setActive((a) => (a + 1) % STATEMENTS.length);
-    }, DURATION);
-    return () => window.clearTimeout(id);
-  }, [active, inView, hovering]);
+  const s2Opacity = useTransform(
+    scrollYProgress,
+    [0.24, 0.3, 0.45, 0.51],
+    [0, 1, 1, 0]
+  );
+  const s2Y = useTransform(scrollYProgress, [0.24, 0.51], [36, -36]);
 
-  const go = (dir: number) =>
-    setActive((a) => (a + dir + STATEMENTS.length) % STATEMENTS.length);
+  const s3Opacity = useTransform(
+    scrollYProgress,
+    [0.49, 0.55, 0.7, 0.76],
+    [0, 1, 1, 0]
+  );
+  const s3Y = useTransform(scrollYProgress, [0.49, 0.76], [36, -36]);
+
+  const s4Opacity = useTransform(scrollYProgress, [0.74, 0.8], [0, 1]);
+  const s4Y = useTransform(scrollYProgress, [0.74, 0.86], [28, 0]);
+
+  const statement = (
+    label: string,
+    text: string,
+    styles: { opacity: MotionValue<number>; y: MotionValue<number> },
+    accent = false
+  ) => (
+    <motion.div
+      style={{ opacity: styles.opacity, y: styles.y }}
+      className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
+    >
+      <p className="label mb-6 opacity-80">{label}</p>
+      <h2
+        className="display text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.15]"
+        style={accent ? { color: "var(--accent)" } : undefined}
+      >
+        {text}
+      </h2>
+    </motion.div>
+  );
 
   return (
     <section
       id="chapter-03"
-      ref={sectionRef}
       data-chapter="03"
       data-accent="violet"
       className="relative overflow-hidden"
       style={{ backgroundColor: "#0a0a0d", color: "#f1f0ec" }}
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -83,70 +96,37 @@ export default function ChapterTurningPoint() {
         <PixelGrid className="w-[min(26vw,300px)] opacity-25" bare />
       </div>
 
-      <div className="relative mx-auto flex min-h-[88vh] w-full max-w-4xl flex-col items-center justify-center px-6 py-24">
-        <p className="label mb-10" style={{ color: "var(--accent)" }}>
-          Chapter 03 — The Turning Point
-        </p>
+      <div ref={ref} className="relative h-[400vh]">
+        <div className="sticky top-0 flex h-screen items-center justify-center px-6">
+          <div className="mx-auto w-full max-w-4xl text-center">
+            <p className="label mb-10" style={{ color: "var(--accent)" }}>
+              Chapter 03 — The Turning Point
+            </p>
 
-        <div className="relative flex min-h-[300px] w-full items-center justify-center sm:min-h-[340px]">
-          {STATEMENTS.map((s, i) => {
-            const isActive = i === active;
-            return (
-              <motion.div
-                key={s.label}
-                initial={false}
-                animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 16 }}
-                transition={{ duration: 0.6, ease: EASE }}
-                className="absolute inset-0 flex flex-col items-center justify-center text-center"
-                aria-hidden={!isActive}
-              >
-                <p className="label mb-6 opacity-80">{s.label}</p>
-                <h2 className="display text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.15]">
-                  {s.text}
-                </h2>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        <div className="mt-14 flex items-center gap-6">
-          <button
-            onClick={() => go(-1)}
-            aria-label="Previous statement"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(241,240,236,0.18)] text-[rgba(241,240,236,0.7)] transition-colors hover:border-[rgba(139,92,246,0.6)] hover:text-[#a78bfa]"
-          >
-            <ChevronLeft size={18} />
-          </button>
-
-          <div className="flex items-center gap-2">
-            {STATEMENTS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                aria-label={`Go to statement ${i + 1}`}
-                className="relative h-1.5 w-10 overflow-hidden rounded-full bg-[rgba(241,240,236,0.16)]"
-              >
-                {i === active && (
-                  <motion.span
-                    key={`bar-${active}`}
-                    className="absolute inset-0 origin-left rounded-full"
-                    style={{ backgroundColor: "var(--accent)" }}
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: DURATION / 1000, ease: "linear" }}
-                  />
-                )}
-              </button>
-            ))}
+            <div className="relative min-h-[300px] sm:min-h-[340px]">
+              {statement(
+                STATEMENTS[0].label,
+                STATEMENTS[0].text,
+                { opacity: s1Opacity, y: s1Y }
+              )}
+              {statement(
+                STATEMENTS[1].label,
+                STATEMENTS[1].text,
+                { opacity: s2Opacity, y: s2Y }
+              )}
+              {statement(
+                STATEMENTS[2].label,
+                STATEMENTS[2].text,
+                { opacity: s3Opacity, y: s3Y },
+                true
+              )}
+              {statement(
+                STATEMENTS[3].label,
+                STATEMENTS[3].text,
+                { opacity: s4Opacity, y: s4Y }
+              )}
+            </div>
           </div>
-
-          <button
-            onClick={() => go(1)}
-            aria-label="Next statement"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(241,240,236,0.18)] text-[rgba(241,240,236,0.7)] transition-colors hover:border-[rgba(139,92,246,0.6)] hover:text-[#a78bfa]"
-          >
-            <ChevronRight size={18} />
-          </button>
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@ export const profile = {
   role: "Creative Head",
   company: "OneDot Media",
   email: "parthybank@gmail.com",
+  phone: "+91 9789071079",
   linkedin: "https://www.linkedin.com/in/parthyk",
   instagram: "https://www.instagram.com/parthibank",
   instagramHandle: "@parthibank",
@@ -196,8 +197,8 @@ export type PortfolioItem = {
 
 const CATEGORY_KEY: Record<string, PortfolioCategory> = {
   UI: "UI Design",
-  Brand: "Brand Design",
-  Social: "Social Media",
+  BRAND: "Brand Design",
+  SOCIAL: "Social Media",
 };
 
 const CATEGORY_GRADIENT: Record<PortfolioCategory, [string, string]> = {
@@ -272,21 +273,25 @@ export const philosophyPrinciples = [
 export const futureVisions = [
   {
     icon: "ai",
+    tag: "AI",
     title: "AI-Powered Creativity",
     desc: "Blending human taste with machine speed to make more, better, faster.",
   },
   {
     icon: "globe",
+    tag: "Global",
     title: "Building Global Brands",
     desc: "Taking strong regional brands to markets far beyond their borders.",
   },
   {
     icon: "users",
+    tag: "People",
     title: "High-Performance Teams",
     desc: "Leading creative teams that ship with speed and soul.",
   },
   {
     icon: "spark",
+    tag: "Growth",
     title: "Continuous Learning",
     desc: "The studio as a school — every project makes us sharper.",
   },
