@@ -16,19 +16,19 @@ export default function SplitText({
   lines,
   className = "",
   delay = 0,
-  duration = 0.9,
+  duration = 1.1,
   once = true,
 }: Props) {
   const reduce = useReducedMotion();
 
   const container: Variants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.09, delayChildren: delay } },
+    visible: { transition: { staggerChildren: 0.1, delayChildren: delay } },
   };
 
   const line: Variants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.05 } },
+    visible: { transition: { staggerChildren: 0.06 } },
   };
 
   const word: Variants = {

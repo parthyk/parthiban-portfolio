@@ -35,7 +35,15 @@ export default function Portfolio() {
       <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-xl">
-            <p className="label-accent mb-3">Selected Work</p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+              transition={{ duration: 0.9, ease: EASE }}
+              className="label-accent mb-3"
+            >
+              Selected Work
+            </motion.p>
             <SplitText
               lines={["Things I made", "while learning."]}
               className="display text-[clamp(1.9rem,4.4vw,3.2rem)]"
