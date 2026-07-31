@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import {
   motion,
   useScroll,
-  useSpring,
   useTransform,
   useMotionValueEvent,
 } from "framer-motion";
@@ -37,7 +36,6 @@ export default function ChapterTurningPoint() {
     target: ref,
     offset: ["start 0.75", "end 0.6"],
   });
-  const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 28 });
 
   const [step, setStep] = useState(0);
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -45,24 +43,24 @@ export default function ChapterTurningPoint() {
     setStep((prev) => (prev === s ? prev : s));
   });
 
-  const fillY = useTransform(progress, [0, 0.9], [0, 1]);
+  const fillY = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
 
   const stepStyles: StepStyles[] = [
     {
-      opacity: useTransform(progress, [0, 0.18], [0, 1]),
-      x: useTransform(progress, [0, 0.18], [20, 0]),
+      opacity: useTransform(scrollYProgress, [0, 0.18], [0, 1]),
+      x: useTransform(scrollYProgress, [0, 0.18], [20, 0]),
     },
     {
-      opacity: useTransform(progress, [0.25, 0.43], [0, 1]),
-      x: useTransform(progress, [0.25, 0.43], [20, 0]),
+      opacity: useTransform(scrollYProgress, [0.25, 0.43], [0, 1]),
+      x: useTransform(scrollYProgress, [0.25, 0.43], [20, 0]),
     },
     {
-      opacity: useTransform(progress, [0.5, 0.68], [0, 1]),
-      x: useTransform(progress, [0.5, 0.68], [20, 0]),
+      opacity: useTransform(scrollYProgress, [0.5, 0.68], [0, 1]),
+      x: useTransform(scrollYProgress, [0.5, 0.68], [20, 0]),
     },
     {
-      opacity: useTransform(progress, [0.75, 0.93], [0, 1]),
-      x: useTransform(progress, [0.75, 0.93], [20, 0]),
+      opacity: useTransform(scrollYProgress, [0.75, 0.93], [0, 1]),
+      x: useTransform(scrollYProgress, [0.75, 0.93], [20, 0]),
     },
   ];
 
@@ -78,7 +76,7 @@ export default function ChapterTurningPoint() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(70% 70% at 50% 10%, rgba(139,92,246,0.14), transparent 72%)",
+            "radial-gradient(60% 60% at 50% 50%, rgba(139,92,246,0.15), transparent 72%)",
         }}
         aria-hidden
       />
