@@ -10,11 +10,11 @@ export default function ChapterTurningPoint() {
     offset: ["start start", "end end"],
   });
 
-  const s1Opacity = useTransform(scrollYProgress, [0.05, 0.3], [1, 0]);
-  const s1Y = useTransform(scrollYProgress, [0.05, 0.3], [0, -40]);
-  const s2Opacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 1]);
-  const s2Scale = useTransform(scrollYProgress, [0.4, 0.66], [0.96, 1]);
-  const s2Y = useTransform(scrollYProgress, [0.4, 0.62], [20, 0]);
+  const s1Opacity = useTransform(scrollYProgress, [0.1, 0.55], [1, 0]);
+  const s1Y = useTransform(scrollYProgress, [0.1, 0.55], [0, -40]);
+  const s2Opacity = useTransform(scrollYProgress, [0.58, 0.82], [0, 1]);
+  const s2Scale = useTransform(scrollYProgress, [0.58, 0.85], [0.96, 1]);
+  const s2Y = useTransform(scrollYProgress, [0.58, 0.82], [20, 0]);
 
   return (
     <section
@@ -24,7 +24,7 @@ export default function ChapterTurningPoint() {
       className="relative overflow-hidden"
       style={{ backgroundColor: "#0a0a0d", color: "#f1f0ec" }}
     >
-      <div ref={ref} className="relative h-[260vh]">
+      <div ref={ref} className="relative h-[170vh]">
         <div className="sticky top-0 flex h-screen items-center justify-center px-6">
           <div className="mx-auto w-full max-w-4xl text-center">
             <motion.div
