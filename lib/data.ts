@@ -25,16 +25,16 @@ export const chapters = [
 
 export const designerTimeline = [
   {
-    period: "2015 — 2016",
-    company: "TryAround",
-    role: "Creative Designer",
-    note: "Freelance — first pixels",
-  },
-  {
     period: "2016 — 2019",
     company: "OneDot Media",
     role: "Creative Designer",
     note: "UI · Brand · Social",
+  },
+  {
+    period: "2015 — 2016",
+    company: "TryAround",
+    role: "Creative Designer",
+    note: "Freelance — first pixels",
   },
 ];
 
@@ -215,20 +215,21 @@ const CATEGORY_DESC: Record<PortfolioCategory, string> = {
 export const portfolioImages = [
   "Blendz-UI-1.webp",
   "ESSA-UI-2.webp",
-  "Bicycle-UI-3.webp",
+  "Bicycle-Ui-3.webp",
   "Line-Brand-1.jpg",
   "Shoreline-Brand-2.webp",
-  "Suba Solutions-Brand-3.webp",
+  "Kids Wear-Brand-3.webp",
   "Ojas Yoga-Social-1.webp",
   "Sayar Jewellery-Social-2.webp",
-  "Trendz-Social-3.jpg",
+  "NatureMills-Social-3.webp",
 ];
 
 function buildItem(fileName: string): PortfolioItem {
   const base = fileName.replace(/\.[^.]+$/, "");
   const parts = base.split("-");
   const order = parseInt(parts[parts.length - 1] ?? "1", 10) || 1;
-  const category = CATEGORY_KEY[parts[parts.length - 2]] ?? "UI Design";
+  const categoryKey = (parts[parts.length - 2] ?? "").toUpperCase();
+  const category = CATEGORY_KEY[categoryKey] ?? "UI Design";
   const title = parts.slice(0, -2).join(" ");
   const [from, to] = CATEGORY_GRADIENT[category];
   return {

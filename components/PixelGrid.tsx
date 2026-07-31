@@ -7,6 +7,7 @@ type Props = {
   className?: string;
   x?: MotionValue<number>;
   y?: MotionValue<number>;
+  bare?: boolean;
 };
 
 const ROWS = 9;
@@ -32,7 +33,7 @@ function pixelColor(i: number) {
   return PALETTE[hash(i + 101) % PALETTE.length];
 }
 
-export default function PixelGrid({ className = "", x, y }: Props) {
+export default function PixelGrid({ className = "", x, y, bare = false }: Props) {
   return (
     <motion.div
       className={`grid ${className}`}
@@ -47,7 +48,7 @@ export default function PixelGrid({ className = "", x, y }: Props) {
             key={i}
             className={`aspect-square rounded-[2px] ${lit ? "animate-pixel" : ""}`}
             style={{
-              backgroundColor: color,
+              backgroundColor: bare ? (lit ? color : "transparent") : color,
               boxShadow: lit ? `0 0 8px 1px ${color}` : undefined,
               animationDelay: lit ? `${(i % 13) * 0.42}s` : undefined,
               animationDuration: lit ? `${2 + (i % 4) * 0.8}s` : undefined,

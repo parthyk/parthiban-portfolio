@@ -75,15 +75,20 @@ export default function Contact() {
           />
 
           <Reveal delay={0.2}>
-            <div className="mt-12 flex justify-center">
+            <div className="mt-12 flex flex-col items-center gap-4">
               <Magnetic strength={0.4}>
                 <a
                   href={`mailto:${profile.email}`}
-                  className="group inline-flex items-center gap-3 rounded-full bg-ink px-9 py-4 font-serif text-lg text-bg transition-shadow hover:shadow-[var(--shadow)]"
+                  className="group inline-flex flex-col items-center gap-1.5 rounded-3xl bg-ink px-10 py-5 text-bg transition-shadow hover:shadow-[var(--shadow)]"
                 >
-                  Let&rsquo;s Create Together
+                  <span className="text-[11px] uppercase tracking-[0.22em] opacity-70">
+                    Let&rsquo;s Create Together
+                  </span>
+                  <span className="font-serif text-lg md:text-xl">
+                    {profile.email}
+                  </span>
                   <ArrowUpRight
-                    size={18}
+                    size={16}
                     className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                   />
                 </a>

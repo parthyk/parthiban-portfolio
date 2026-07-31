@@ -28,7 +28,7 @@ export default function Chapter({
     <div
       className={`flex items-center gap-4 ${
         sticky
-          ? "sticky top-20 z-20 mb-12 rounded-2xl border border-line glass px-5 py-3 md:mb-16"
+          ? "sticky top-20 z-20 mb-12 rounded-2xl border border-line bg-bg px-5 py-3 shadow-[var(--shadow)] md:mb-16"
           : "mb-12 md:mb-16"
       }`}
     >

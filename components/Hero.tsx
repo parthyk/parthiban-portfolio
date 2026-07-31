@@ -59,7 +59,7 @@ export default function Hero() {
         style={{ x: gridX, y: gridY }}
         aria-hidden
       >
-        <PixelGrid className="w-[min(92vw,860px)] opacity-60" />
+        <PixelGrid className="w-[min(92vw,860px)] opacity-60" bare />
       </motion.div>
 
       <div className="relative z-10 flex flex-1 items-center justify-center px-6 pt-16">

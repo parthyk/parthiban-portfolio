@@ -11,17 +11,17 @@ export default function ChapterTurningPoint() {
     offset: ["start start", "end end"],
   });
 
-  const s1Opacity = useTransform(scrollYProgress, [0.02, 0.13, 0.18, 0.28], [0, 1, 1, 0]);
-  const s1Y = useTransform(scrollYProgress, [0.02, 0.28], [28, -28]);
+  const s1Opacity = useTransform(scrollYProgress, [0, 0.1, 0.18], [1, 1, 0]);
+  const s1Y = useTransform(scrollYProgress, [0, 0.18], [0, -28]);
 
-  const s2Opacity = useTransform(scrollYProgress, [0.31, 0.42, 0.47, 0.57], [0, 1, 1, 0]);
-  const s2Y = useTransform(scrollYProgress, [0.31, 0.57], [28, -28]);
+  const s2Opacity = useTransform(scrollYProgress, [0.16, 0.26, 0.4, 0.5], [0, 1, 1, 0]);
+  const s2Y = useTransform(scrollYProgress, [0.16, 0.5], [28, -28]);
 
-  const s3Opacity = useTransform(scrollYProgress, [0.6, 0.71, 0.76, 0.86], [0, 1, 1, 0]);
-  const s3Y = useTransform(scrollYProgress, [0.6, 0.86], [28, -28]);
+  const s3Opacity = useTransform(scrollYProgress, [0.46, 0.56, 0.7, 0.8], [0, 1, 1, 0]);
+  const s3Y = useTransform(scrollYProgress, [0.46, 0.8], [28, -28]);
 
-  const s4Opacity = useTransform(scrollYProgress, [0.9, 0.98], [0, 1]);
-  const s4Y = useTransform(scrollYProgress, [0.9, 0.98], [24, 0]);
+  const s4Opacity = useTransform(scrollYProgress, [0.76, 0.86], [0, 1]);
+  const s4Y = useTransform(scrollYProgress, [0.76, 0.88], [24, 0]);
 
   const statement = (
     label: string,
