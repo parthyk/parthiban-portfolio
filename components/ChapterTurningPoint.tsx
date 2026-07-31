@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 
 export default function ChapterTurningPoint() {
   const ref = useRef<HTMLDivElement>(null);
@@ -10,11 +11,41 @@ export default function ChapterTurningPoint() {
     offset: ["start start", "end end"],
   });
 
-  const s1Opacity = useTransform(scrollYProgress, [0.1, 0.55], [1, 0]);
-  const s1Y = useTransform(scrollYProgress, [0.1, 0.55], [0, -40]);
-  const s2Opacity = useTransform(scrollYProgress, [0.58, 0.82], [0, 1]);
-  const s2Scale = useTransform(scrollYProgress, [0.58, 0.85], [0.96, 1]);
-  const s2Y = useTransform(scrollYProgress, [0.58, 0.82], [20, 0]);
+  const s1Opacity = useTransform(scrollYProgress, [0.02, 0.13, 0.18, 0.28], [0, 1, 1, 0]);
+  const s1Y = useTransform(scrollYProgress, [0.02, 0.28], [28, -28]);
+
+  const s2Opacity = useTransform(scrollYProgress, [0.31, 0.42, 0.47, 0.57], [0, 1, 1, 0]);
+  const s2Y = useTransform(scrollYProgress, [0.31, 0.57], [28, -28]);
+
+  const s3Opacity = useTransform(scrollYProgress, [0.6, 0.71, 0.76, 0.86], [0, 1, 1, 0]);
+  const s3Y = useTransform(scrollYProgress, [0.6, 0.86], [28, -28]);
+
+  const s4Opacity = useTransform(scrollYProgress, [0.9, 0.98], [0, 1]);
+  const s4Y = useTransform(scrollYProgress, [0.9, 0.98], [24, 0]);
+
+  const statement = (
+    label: string,
+    title: string,
+    styles: { opacity: MotionValue<number>; y: MotionValue<number> },
+    accentTitle = false
+  ) => (
+    <motion.div
+      style={{ opacity: styles.opacity, y: styles.y }}
+      className="absolute inset-0 grid place-items-center px-6"
+    >
+      <div>
+        <p className="label mb-6" style={{ color: "var(--accent)" }}>
+          {label}
+        </p>
+        <h2
+          className="display text-[clamp(1.8rem,5vw,3.6rem)] leading-[1.1]"
+          style={accentTitle ? { color: "var(--accent)" } : undefined}
+        >
+          {title}
+        </h2>
+      </div>
+    </motion.div>
+  );
 
   return (
     <section
@@ -24,46 +55,33 @@ export default function ChapterTurningPoint() {
       className="relative overflow-hidden"
       style={{ backgroundColor: "#0a0a0d", color: "#f1f0ec" }}
     >
-      <div ref={ref} className="relative h-[170vh]">
+      <div ref={ref} className="relative h-[320vh]">
         <div className="sticky top-0 flex h-screen items-center justify-center px-6">
           <div className="mx-auto w-full max-w-4xl text-center">
-            <motion.div
-              style={{ opacity: s1Opacity, y: s1Y }}
-              className="absolute inset-0 grid place-items-center px-6"
-            >
-              <div>
-                <p className="label mb-6" style={{ color: "var(--accent)" }}>
-                  Chapter 03 — The Turning Point
-                </p>
-                <h2 className="display text-[clamp(2.2rem,6.4vw,4.8rem)]">
-                  Then I realized — great design isn&rsquo;t enough.
-                </h2>
-              </div>
-            </motion.div>
+            {statement(
+              "Chapter 03 — The Turning Point",
+              "Then I realized — great design isn\u2019t enough.",
+              { opacity: s1Opacity, y: s1Y }
+            )}
 
-            <motion.div
-              style={{ opacity: s2Opacity, scale: s2Scale, y: s2Y }}
-              className="absolute inset-0 grid place-items-center px-6"
-            >
-              <div className="max-w-3xl">
-                <p className="label mb-6" style={{ color: "var(--accent)" }}>
-                  The Shift
-                </p>
-                <h2 className="display text-[clamp(1.7rem,4.6vw,3.4rem)] leading-[1.15]">
-                  Businesses don&rsquo;t grow because something looks beautiful.
-                </h2>
-                <div
-                  className="mx-auto mt-8 h-px w-16"
-                  style={{ backgroundColor: "var(--accent)" }}
-                />
-                <p
-                  className="display mt-8 text-[clamp(1.7rem,4.6vw,3.4rem)] leading-[1.15]"
-                  style={{ color: "var(--accent)" }}
-                >
-                  They grow because creativity solves problems.
-                </p>
-              </div>
-            </motion.div>
+            {statement(
+              "The Realization",
+              "Businesses don\u2019t grow because something looks beautiful.",
+              { opacity: s2Opacity, y: s2Y }
+            )}
+
+            {statement(
+              "The Shift",
+              "They grow because creativity solves problems.",
+              { opacity: s3Opacity, y: s3Y },
+              true
+            )}
+
+            {statement(
+              "The Decision",
+              "So I stopped designing pixels — and started designing outcomes.",
+              { opacity: s4Opacity, y: s4Y }
+            )}
           </div>
         </div>
       </div>

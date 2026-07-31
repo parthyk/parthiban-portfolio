@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import SplitText from "@/components/SplitText";
 import { portfolioItems } from "@/lib/data";
@@ -72,24 +73,29 @@ export default function Portfolio() {
             >
               <article className="group overflow-hidden rounded-3xl border border-line bg-card transition-colors duration-300 hover:border-accent">
                 <div
-                  className={`relative flex ${COVER_ASPECTS[i % 3]} flex-col justify-between overflow-hidden p-5`}
+                  className={`relative ${COVER_ASPECTS[i % 3]} overflow-hidden`}
                   style={{
                     background: `linear-gradient(135deg, ${item.from}, ${item.to})`,
                   }}
                 >
-                  <span
-                    className="font-mono text-xs uppercase tracking-widest"
-                    style={{ color: "rgba(255,255,255,0.85)" }}
-                  >
-                    {item.tag}
+                  <Image
+                    src={item.image}
+                    alt={`${item.title} — ${item.category}`}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <span className="absolute left-5 top-5 font-mono text-xs uppercase tracking-widest text-white/90">
+                    0{item.order}
                   </span>
-                  <h3 className="font-serif text-2xl leading-tight text-white drop-shadow-sm">
-                    {item.title}
-                  </h3>
                 </div>
                 <div className="p-5">
                   <p className="label mb-2">{item.category}</p>
-                  <p className="text-sm leading-relaxed text-muted">
+                  <h3 className="font-serif text-xl leading-tight">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
                     {item.desc}
                   </p>
                 </div>

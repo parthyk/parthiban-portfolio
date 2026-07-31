@@ -38,7 +38,7 @@ export default function Hero() {
       data-chapter="00"
       data-accent="stone"
       onMouseMove={onMouseMove}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-16"
+      className="relative flex min-h-screen flex-col overflow-hidden"
     >
       <motion.div
         className="pointer-events-none absolute inset-0"
@@ -59,10 +59,11 @@ export default function Hero() {
         style={{ x: gridX, y: gridY }}
         aria-hidden
       >
-        <PixelGrid className="w-[min(92vw,860px)] opacity-40" />
+        <PixelGrid className="w-[min(92vw,860px)] opacity-60" />
       </motion.div>
 
-      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
+      <div className="relative z-10 flex flex-1 items-center justify-center px-6 pt-16">
+        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -114,26 +115,29 @@ export default function Hero() {
             }}
           />
         </motion.div>
+        </div>
       </div>
 
-      <motion.a
-        href="#chapter-01"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-8 flex flex-col items-center gap-3"
-      >
-        <span className="label">Scroll to Begin the Journey</span>
-        <span
-          className="relative block h-10 w-px overflow-hidden"
-          style={{ backgroundColor: "var(--line-strong)" }}
+      <div className="relative z-10 flex justify-center px-6 pb-8">
+        <motion.a
+          href="#chapter-01"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+          className="flex flex-col items-center gap-3"
         >
+          <span className="label">Scroll to Begin the Journey</span>
           <span
-            className="animate-scroll-dot absolute left-0 top-0 block h-3 w-px"
-            style={{ backgroundColor: "var(--accent)" }}
-          />
-        </span>
-      </motion.a>
+            className="relative block h-10 w-px overflow-hidden"
+            style={{ backgroundColor: "var(--line-strong)" }}
+          >
+            <span
+              className="animate-scroll-dot absolute left-0 top-0 block h-3 w-px"
+              style={{ backgroundColor: "var(--accent)" }}
+            />
+          </span>
+        </motion.a>
+      </div>
     </section>
   );
 }

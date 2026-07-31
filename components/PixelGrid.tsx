@@ -12,14 +12,24 @@ type Props = {
 const ROWS = 9;
 const COLS = 26;
 
-const PALETTE = ["var(--accent)", "#8b5cf6", "#e3b955", "#4fd1c5", "#f26d71"];
+const PALETTE = ["#4f6ef7", "#8b5cf6", "#e3b955", "#4fd1c5", "#f26d71"];
+
+function hash(n: number) {
+  let x = n;
+  x = (x ^ 61) ^ (x >> 16);
+  x = x + (x << 3);
+  x = x ^ (x >> 4);
+  x = (x * 0x27d4eb2d) | 0;
+  x = x ^ (x >> 15);
+  return Math.abs(x);
+}
 
 function isLit(i: number) {
-  return (i * 7919 + 37) % 5 === 0;
+  return hash(i) % 100 < 26;
 }
 
 function pixelColor(i: number) {
-  return PALETTE[(i * 7 + 3) % PALETTE.length];
+  return PALETTE[hash(i + 101) % PALETTE.length];
 }
 
 export default function PixelGrid({ className = "", x, y }: Props) {

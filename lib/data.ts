@@ -186,86 +186,69 @@ export type PortfolioCategory = "UI Design" | "Brand Design" | "Social Media";
 export type PortfolioItem = {
   title: string;
   category: PortfolioCategory;
+  order: number;
+  image: string;
   tag: string;
   desc: string;
   from: string;
   to: string;
 };
 
-export const portfolioItems: PortfolioItem[] = [
-  {
-    title: "Nordex — Brand System",
-    category: "Brand Design",
-    tag: "Identity",
-    desc: "A complete visual language for an industrial engineering firm.",
-    from: "#4f6ef7",
-    to: "#8b5cf6",
-  },
-  {
-    title: "Hachidori — App UI",
-    category: "UI Design",
-    tag: "Product",
-    desc: "Clean, confident screens for a clean-energy platform.",
-    from: "#0e9f9e",
-    to: "#4fd1c5",
-  },
-  {
-    title: "June Flowers — Social Kit",
-    category: "Social Media",
-    tag: "Campaign",
-    desc: "A 30-day social content system for a retail brand.",
-    from: "#e5484d",
-    to: "#f26d71",
-  },
-  {
-    title: "Casagrand — Brand Refresh",
-    category: "Brand Design",
-    tag: "Identity",
-    desc: "A premium identity for a real-estate developer.",
-    from: "#b8860b",
-    to: "#e3b955",
-  },
-  {
-    title: "Shizen Energy — Website",
-    category: "UI Design",
-    tag: "Web",
-    desc: "Informational design for renewable energy in motion.",
-    from: "#4fd1c5",
-    to: "#4f6ef7",
-  },
-  {
-    title: "Nature Mills — Packaging",
-    category: "Brand Design",
-    tag: "Packaging",
-    desc: "Shelf presence for a natural food brand.",
-    from: "#8b5cf6",
-    to: "#e3b955",
-  },
-  {
-    title: "Geewin Exim — Campaign",
-    category: "Social Media",
-    tag: "Campaign",
-    desc: "Export brand storytelling across social platforms.",
-    from: "#f26d71",
-    to: "#0e9f9e",
-  },
-  {
-    title: "TriElectric — Product UI",
-    category: "UI Design",
-    tag: "Product",
-    desc: "Control-panel UI for heavy manufacturing equipment.",
-    from: "#e3b955",
-    to: "#e5484d",
-  },
-  {
-    title: "TVS Emerald — Social",
-    category: "Social Media",
-    tag: "Content",
-    desc: "Social identity for a luxury residential brand.",
-    from: "#0e9f9e",
-    to: "#8b5cf6",
-  },
+const CATEGORY_KEY: Record<string, PortfolioCategory> = {
+  UI: "UI Design",
+  Brand: "Brand Design",
+  Social: "Social Media",
+};
+
+const CATEGORY_GRADIENT: Record<PortfolioCategory, [string, string]> = {
+  "UI Design": ["#4f6ef7", "#8b5cf6"],
+  "Brand Design": ["#e5484d", "#f26d71"],
+  "Social Media": ["#0e9f9e", "#4fd1c5"],
+};
+
+const CATEGORY_DESC: Record<PortfolioCategory, string> = {
+  "UI Design": "Interface and product design, crafted for a clearer experience.",
+  "Brand Design": "Brand identity and a visual system built to be remembered.",
+  "Social Media": "Social content and campaigns designed to stop the scroll.",
+};
+
+export const portfolioImages = [
+  "Blendz-UI-1.webp",
+  "ESSA-UI-2.webp",
+  "Bicycle-UI-3.webp",
+  "Line-Brand-1.jpg",
+  "Shoreline-Brand-2.webp",
+  "Suba Solutions-Brand-3.webp",
+  "Ojas Yoga-Social-1.webp",
+  "Sayar Jewellery-Social-2.webp",
+  "Trendz-Social-3.jpg",
 ];
+
+function buildItem(fileName: string): PortfolioItem {
+  const base = fileName.replace(/\.[^.]+$/, "");
+  const parts = base.split("-");
+  const order = parseInt(parts[parts.length - 1] ?? "1", 10) || 1;
+  const category = CATEGORY_KEY[parts[parts.length - 2]] ?? "UI Design";
+  const title = parts.slice(0, -2).join(" ");
+  const [from, to] = CATEGORY_GRADIENT[category];
+  return {
+    title,
+    category,
+    order,
+    image: `/images/${fileName}`,
+    tag: category,
+    desc: CATEGORY_DESC[category],
+    from,
+    to,
+  };
+}
+
+export const portfolioItems: PortfolioItem[] = portfolioImages
+  .map(buildItem)
+  .sort((a, b) => {
+    if (a.category !== b.category) return a.category.localeCompare(b.category);
+    return a.order - b.order;
+  });
 
 export const philosophyPrinciples = [
   {
