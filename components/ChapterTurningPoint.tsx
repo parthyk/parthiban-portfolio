@@ -28,7 +28,7 @@ const STATEMENTS = [
   },
 ];
 
-type StepStyles = { opacity: MotionValue<number>; x: MotionValue<number> };
+type StepStyles = { opacity: MotionValue<number>; y: MotionValue<number> };
 
 export default function ChapterTurningPoint() {
   const ref = useRef<HTMLDivElement>(null);
@@ -47,20 +47,20 @@ export default function ChapterTurningPoint() {
 
   const stepStyles: StepStyles[] = [
     {
-      opacity: useTransform(scrollYProgress, [0, 0.18], [0, 1]),
-      x: useTransform(scrollYProgress, [0, 0.18], [20, 0]),
+      opacity: useTransform(scrollYProgress, [0, 0.22], [0, 1]),
+      y: useTransform(scrollYProgress, [0, 0.22], [48, 0]),
     },
     {
-      opacity: useTransform(scrollYProgress, [0.25, 0.43], [0, 1]),
-      x: useTransform(scrollYProgress, [0.25, 0.43], [20, 0]),
+      opacity: useTransform(scrollYProgress, [0.24, 0.46], [0, 1]),
+      y: useTransform(scrollYProgress, [0.24, 0.46], [48, 0]),
     },
     {
-      opacity: useTransform(scrollYProgress, [0.5, 0.68], [0, 1]),
-      x: useTransform(scrollYProgress, [0.5, 0.68], [20, 0]),
+      opacity: useTransform(scrollYProgress, [0.48, 0.7], [0, 1]),
+      y: useTransform(scrollYProgress, [0.48, 0.7], [48, 0]),
     },
     {
-      opacity: useTransform(scrollYProgress, [0.75, 0.93], [0, 1]),
-      x: useTransform(scrollYProgress, [0.75, 0.93], [20, 0]),
+      opacity: useTransform(scrollYProgress, [0.72, 0.94], [0, 1]),
+      y: useTransform(scrollYProgress, [0.72, 0.94], [48, 0]),
     },
   ];
 
@@ -93,7 +93,7 @@ export default function ChapterTurningPoint() {
             return (
               <motion.div
                 key={s.label}
-                style={{ opacity: stepStyles[i].opacity, x: stepStyles[i].x }}
+                style={{ opacity: stepStyles[i].opacity, y: stepStyles[i].y }}
                 className="relative flex gap-6 pb-16 pl-8 last:pb-0 md:gap-8 md:pl-10"
               >
                 <span
