@@ -1,7 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import PixelGrid from "@/components/PixelGrid";
 
@@ -24,52 +29,41 @@ const STATEMENTS = [
   },
 ];
 
+type StepStyles = { opacity: MotionValue<number>; x: MotionValue<number> };
+
 export default function ChapterTurningPoint() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end end"],
+    offset: ["start 0.75", "end 0.6"],
   });
 
-  const s1Opacity = useTransform(scrollYProgress, [0, 0.2, 0.26], [1, 1, 0]);
-  const s1Y = useTransform(scrollYProgress, [0, 0.26], [0, -32]);
+  const [step, setStep] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const s = v >= 0.75 ? 3 : v >= 0.5 ? 2 : v >= 0.25 ? 1 : 0;
+    setStep((prev) => (prev === s ? prev : s));
+  });
 
-  const s2Opacity = useTransform(
-    scrollYProgress,
-    [0.24, 0.3, 0.45, 0.51],
-    [0, 1, 1, 0]
-  );
-  const s2Y = useTransform(scrollYProgress, [0.24, 0.51], [36, -36]);
+  const fillY = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
 
-  const s3Opacity = useTransform(
-    scrollYProgress,
-    [0.49, 0.55, 0.7, 0.76],
-    [0, 1, 1, 0]
-  );
-  const s3Y = useTransform(scrollYProgress, [0.49, 0.76], [36, -36]);
-
-  const s4Opacity = useTransform(scrollYProgress, [0.74, 0.8], [0, 1]);
-  const s4Y = useTransform(scrollYProgress, [0.74, 0.86], [28, 0]);
-
-  const statement = (
-    label: string,
-    text: string,
-    styles: { opacity: MotionValue<number>; y: MotionValue<number> },
-    accent = false
-  ) => (
-    <motion.div
-      style={{ opacity: styles.opacity, y: styles.y }}
-      className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
-    >
-      <p className="label mb-6 opacity-80">{label}</p>
-      <h2
-        className="display text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.15]"
-        style={accent ? { color: "var(--accent)" } : undefined}
-      >
-        {text}
-      </h2>
-    </motion.div>
-  );
+  const stepStyles: StepStyles[] = [
+    {
+      opacity: useTransform(scrollYProgress, [0, 0.18], [0, 1]),
+      x: useTransform(scrollYProgress, [0, 0.18], [28, 0]),
+    },
+    {
+      opacity: useTransform(scrollYProgress, [0.25, 0.43], [0, 1]),
+      x: useTransform(scrollYProgress, [0.25, 0.43], [28, 0]),
+    },
+    {
+      opacity: useTransform(scrollYProgress, [0.5, 0.68], [0, 1]),
+      x: useTransform(scrollYProgress, [0.5, 0.68], [28, 0]),
+    },
+    {
+      opacity: useTransform(scrollYProgress, [0.75, 0.93], [0, 1]),
+      x: useTransform(scrollYProgress, [0.75, 0.93], [28, 0]),
+    },
+  ];
 
   return (
     <section
@@ -83,7 +77,7 @@ export default function ChapterTurningPoint() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(55% 55% at 50% 42%, rgba(139,92,246,0.16), transparent 70%)",
+            "radial-gradient(55% 55% at 50% 18%, rgba(139,92,246,0.16), transparent 70%)",
         }}
         aria-hidden
       />
@@ -96,37 +90,56 @@ export default function ChapterTurningPoint() {
         <PixelGrid className="w-[min(26vw,300px)] opacity-25" bare />
       </div>
 
-      <div ref={ref} className="relative h-[400vh]">
-        <div className="sticky top-0 flex h-screen items-center justify-center px-6">
-          <div className="mx-auto w-full max-w-4xl text-center">
-            <p className="label mb-10" style={{ color: "var(--accent)" }}>
-              Chapter 03 — The Turning Point
-            </p>
+      <div ref={ref} className="relative mx-auto max-w-4xl px-6 py-24 md:py-36">
+        <div className="mb-16 text-center md:mb-20">
+          <p className="label" style={{ color: "var(--accent)" }}>
+            Chapter 03 — The Turning Point
+          </p>
+        </div>
 
-            <div className="relative min-h-[300px] sm:min-h-[340px]">
-              {statement(
-                STATEMENTS[0].label,
-                STATEMENTS[0].text,
-                { opacity: s1Opacity, y: s1Y }
-              )}
-              {statement(
-                STATEMENTS[1].label,
-                STATEMENTS[1].text,
-                { opacity: s2Opacity, y: s2Y }
-              )}
-              {statement(
-                STATEMENTS[2].label,
-                STATEMENTS[2].text,
-                { opacity: s3Opacity, y: s3Y },
-                true
-              )}
-              {statement(
-                STATEMENTS[3].label,
-                STATEMENTS[3].text,
-                { opacity: s4Opacity, y: s4Y }
-              )}
-            </div>
-          </div>
+        <div className="relative">
+          <div className="absolute bottom-1 left-[5px] top-1 w-px bg-[rgba(241,240,236,0.12)]" />
+          <motion.div
+            className="absolute bottom-1 left-[5px] top-1 w-px origin-top"
+            style={{ scaleY: fillY, backgroundColor: "var(--accent)" }}
+          />
+
+          {STATEMENTS.map((s, i) => {
+            const active = i <= step;
+            return (
+              <motion.div
+                key={s.label}
+                style={{ opacity: stepStyles[i].opacity, x: stepStyles[i].x }}
+                className="relative flex gap-6 pb-16 pl-8 last:pb-0 md:gap-8 md:pl-10"
+              >
+                <span
+                  className="absolute left-0 top-1 block h-3 w-3 rounded-full border-2 transition-colors duration-500"
+                  style={{
+                    backgroundColor: active ? "var(--accent)" : "#0a0a0d",
+                    borderColor: active
+                      ? "var(--accent)"
+                      : "rgba(241,240,236,0.35)",
+                    boxShadow: active
+                      ? "0 0 0 6px rgba(167,139,250,0.16)"
+                      : undefined,
+                  }}
+                />
+                <div>
+                  <p
+                    className={`mb-3 font-mono text-xs uppercase tracking-[0.22em] transition-colors duration-500 ${
+                      active ? "" : "opacity-50"
+                    }`}
+                    style={active ? { color: "var(--accent)" } : undefined}
+                  >
+                    0{i + 1} — {s.label}
+                  </p>
+                  <h2 className="display max-w-xl text-[clamp(1.7rem,4.4vw,3.2rem)] leading-[1.15]">
+                    {s.text}
+                  </h2>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
