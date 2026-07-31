@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   motion,
   useMotionValue,
@@ -94,6 +95,25 @@ export default function Hero() {
           From pixel to perspective. This isn&rsquo;t my portfolio — it&rsquo;s
           my transformation.
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 1.3, ease: EASE }}
+          className="mt-10"
+        >
+          <Image
+            src="/images/parthiban.jpg"
+            alt={`Portrait of ${profile.name}`}
+            width={112}
+            height={112}
+            className="h-28 w-28 rounded-full object-cover"
+            style={{
+              border: "2px solid var(--accent)",
+              boxShadow: "0 0 0 8px var(--accent-soft)",
+            }}
+          />
+        </motion.div>
       </div>
 
       <motion.a

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Mail, Linkedin, Instagram, Globe, ArrowUpRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Magnetic from "@/components/Magnetic";
@@ -49,6 +50,20 @@ export default function Contact() {
     >
       <div className="mx-auto max-w-6xl px-6 py-28 md:py-40">
         <div className="text-center">
+          <Reveal delay={0.1}>
+            <Image
+              src="/images/parthiban.jpg"
+              alt={`Portrait of ${profile.name}`}
+              width={72}
+              height={72}
+              className="mx-auto mb-10 h-16 w-16 rounded-full object-cover"
+              style={{
+                border: "2px solid var(--accent)",
+                boxShadow: "0 0 0 6px var(--accent-soft)",
+              }}
+            />
+          </Reveal>
+
           <SplitText
             lines={[
               "My journey started",
