@@ -40,7 +40,6 @@ export default function ChapterCreativeHead() {
       title="The Creative Head"
       accent="red"
       years="2023 — Now"
-      sticky
     >
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-6">

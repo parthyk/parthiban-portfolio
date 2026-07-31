@@ -8,6 +8,7 @@ type Props = {
   x?: MotionValue<number>;
   y?: MotionValue<number>;
   bare?: boolean;
+  split?: boolean;
 };
 
 const ROWS = 9;
@@ -25,15 +26,23 @@ function hash(n: number) {
   return Math.abs(x);
 }
 
-function isLit(i: number) {
-  return hash(i) % 100 < 26;
+function isLit(i: number, split = false) {
+  const col = i % COLS;
+  const inZone = !split || col < 9 || col >= COLS - 9;
+  return inZone && hash(i) % 100 < 26;
 }
 
 function pixelColor(i: number) {
   return PALETTE[hash(i + 101) % PALETTE.length];
 }
 
-export default function PixelGrid({ className = "", x, y, bare = false }: Props) {
+export default function PixelGrid({
+  className = "",
+  x,
+  y,
+  bare = false,
+  split = false,
+}: Props) {
   return (
     <motion.div
       className={`grid ${className}`}
@@ -41,7 +50,7 @@ export default function PixelGrid({ className = "", x, y, bare = false }: Props)
       aria-hidden
     >
       {Array.from({ length: ROWS * COLS }).map((_, i) => {
-        const lit = isLit(i);
+        const lit = isLit(i, split);
         const color = lit ? pixelColor(i) : "var(--line-strong)";
         return (
           <span

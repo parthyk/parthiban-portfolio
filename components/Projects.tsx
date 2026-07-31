@@ -12,13 +12,7 @@ export default function Projects() {
   const [open, setOpen] = useState<number>(0);
 
   return (
-    <Chapter
-      id="chapter-07"
-      num="07"
-      title="Featured Projects"
-      accent="red"
-      sticky
-    >
+    <Chapter id="chapter-07" num="07" title="Featured Projects" accent="red">
       <div className="mb-14 max-w-3xl">
         <SplitText
           lines={["Not a gallery.", "A portfolio of industries."]}

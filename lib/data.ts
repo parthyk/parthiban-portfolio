@@ -25,16 +25,16 @@ export const chapters = [
 
 export const designerTimeline = [
   {
-    period: "2016 — 2019",
-    company: "OneDot Media",
-    role: "Creative Designer",
-    note: "UI · Brand · Social",
-  },
-  {
     period: "2015 — 2016",
     company: "TryAround",
     role: "Creative Designer",
     note: "Freelance — first pixels",
+  },
+  {
+    period: "2016 — 2019",
+    company: "OneDot Media",
+    role: "Creative Designer",
+    note: "UI · Brand · Social",
   },
 ];
 
@@ -215,7 +215,7 @@ const CATEGORY_DESC: Record<PortfolioCategory, string> = {
 export const portfolioImages = [
   "Blendz-UI-1.webp",
   "ESSA-UI-2.webp",
-  "Bicycle-Ui-3.webp",
+  "Bicycle-UI-3.webp",
   "Line-Brand-1.jpg",
   "Shoreline-Brand-2.webp",
   "Kids Wear-Brand-3.webp",
