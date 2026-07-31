@@ -70,17 +70,8 @@ export default function ChapterTurningPoint() {
       data-chapter="03"
       data-accent="violet"
       className="relative overflow-hidden"
-      style={{ backgroundColor: "#0a0a0d", color: "#f1f0ec" }}
+      style={{ backgroundColor: "#0c0a14", color: "#f1f0ec" }}
     >
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(60% 60% at 50% 50%, rgba(139,92,246,0.15), transparent 72%)",
-        }}
-        aria-hidden
-      />
-
       <div ref={ref} className="relative mx-auto max-w-4xl px-6 py-24 md:py-36">
         <div className="mb-16 text-center md:mb-20">
           <p className="label" style={{ color: "var(--accent)" }}>
@@ -89,20 +80,12 @@ export default function ChapterTurningPoint() {
         </div>
 
         <div className="relative">
-          <div
-            className="absolute bottom-1 left-[4.5px] top-1 w-[3px] rounded-full"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(167,139,250,0.28), rgba(167,139,250,0.05))",
-            }}
-          />
           <motion.div
             className="absolute bottom-1 left-[4.5px] top-1 w-[3px] origin-top rounded-full"
             style={{
               scaleY: fillY,
               background:
-                "linear-gradient(to bottom, var(--accent), rgba(167,139,250,0.28))",
-              boxShadow: "0 0 14px 0 rgba(167,139,250,0.45)",
+                "linear-gradient(to bottom, var(--accent), rgba(167,139,250,0.1))",
             }}
           />
 
