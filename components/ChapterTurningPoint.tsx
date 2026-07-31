@@ -8,6 +8,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import type { MotionValue } from "framer-motion";
+import { EASE } from "@/lib/motion";
 
 const STATEMENTS = [
   {
@@ -73,9 +74,16 @@ export default function ChapterTurningPoint() {
     >
       <div ref={ref} className="relative mx-auto max-w-4xl px-6 py-24 md:py-36">
         <div className="mb-16 text-center md:mb-20">
-          <p className="label" style={{ color: "var(--accent)" }}>
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+            transition={{ duration: 0.9, ease: EASE }}
+            className="label"
+            style={{ color: "var(--accent)" }}
+          >
             Chapter 03 — The Turning Point
-          </p>
+          </motion.p>
         </div>
 
         <div className="relative">
