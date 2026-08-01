@@ -76,26 +76,31 @@ export const leadCards = [
     title: "Leading Designers",
     tag: "People",
     desc: "Guiding a team of designers — hiring, coaching, and protecting the craft.",
+    image: "/images/Leading Designer.png",
   },
   {
     title: "Managing Deadlines",
     tag: "Process",
     desc: "Turning chaos into calendars without ever letting quality slip.",
+    image: "/images/managing deadlines.png",
   },
   {
     title: "Campaign Planning",
     tag: "Strategy",
     desc: "From first concept to final delivery across print, digital and social.",
+    image: "/images/Campaign Planning.png",
   },
   {
     title: "Client Meetings",
     tag: "Trust",
     desc: "Translating business goals into confident creative decisions.",
+    image: "/images/Client Meeting.png",
   },
   {
     title: "Mentoring Teams",
     tag: "Growth",
     desc: "Helping juniors become designers, and designers become leaders.",
+    image: "/images/Growth.png",
   },
 ];
 
@@ -148,37 +153,37 @@ export const industries = [
     name: "Engineering",
     tag: "Industrial",
     blurb: "Precision brands for companies that build the world around us.",
-    clients: ["Nordex India", "IGP Engineers"],
+    clients: ["Nordex India", "IGP Engineers", "El-Tech", "Servo Hydraulics"],
   },
   {
     name: "Manufacturing",
     tag: "Industrial",
     blurb: "Heavy-duty identity work for makers, fabricators and suppliers.",
-    clients: ["Corroshield", "TriElectric"],
+    clients: ["Corroshield", "TriElectric", "Victory Sweepers", "Quenker Matches"],
   },
   {
     name: "Technology",
     tag: "Digital",
     blurb: "Clean, confident brands for the energy and tech of tomorrow.",
-    clients: ["Shizen Energy", "Hachidori"],
+    clients: ["Shizen Energy", "Hachidori", "Testleaf", "K7 Anti Virus"],
   },
   {
     name: "Retailers",
     tag: "Consumer",
     blurb: "Shelf-stopping stories for brands people see every day.",
-    clients: ["June Flowers", "Nature Mills"],
+    clients: ["June Flowers", "Nature Mills", "Freshmeltz", "Glow by NJK"],
   },
   {
     name: "Exporters",
     tag: "Global",
     blurb: "Trust-building branding for businesses trading across borders.",
-    clients: ["Geewin Exim", "Pioneer Asia Group"],
+    clients: ["Geewin Exim", "Pioneer Asia Group", "Coir Genie"],
   },
   {
     name: "Real Estate",
     tag: "Property",
     blurb: "Landmark identities for spaces people call home.",
-    clients: ["Casagrand", "TVS Emerald"],
+    clients: ["Casagrand", "TVS Emerald", "G-Square", "JLL", "Bluemoon"],
   },
 ];
 
@@ -216,7 +221,7 @@ const CATEGORY_DESC: Record<PortfolioCategory, string> = {
 export const portfolioImages = [
   "Blendz-UI-1.webp",
   "ESSA-UI-2.webp",
-  "Bicycle-UI-3.webp",
+  "Bicycle-Ui-3.webp",
   "Line-Brand-1.jpg",
   "Shoreline-Brand-2.webp",
   "Kids Wear-Brand-3.webp",

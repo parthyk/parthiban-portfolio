@@ -77,10 +77,15 @@ export default function ChapterTeamLead() {
               style={{ backgroundColor: "var(--bg-card)" }}
             >
               <div
+                className="absolute inset-0 bg-cover bg-center opacity-50"
+                style={{ backgroundImage: `url("${card.image}")` }}
+              />
+              <div
                 className="absolute inset-0"
                 style={{
-                  background:
-                    "linear-gradient(to top, var(--bg) 0%, transparent 60%)",
+                  background: isActive
+                    ? "linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.25) 45%, transparent 70%)"
+                    : "linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.15) 40%, transparent 65%)",
                 }}
               />
               <div className="absolute inset-x-6 top-6 flex items-start justify-between">
