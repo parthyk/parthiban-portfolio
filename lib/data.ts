@@ -140,21 +140,6 @@ export const careerTimeline = [
   },
 ];
 
-export const education = {
-  degree: "Master of Computer Application",
-  year: "2014",
-  school: "SIVET — Madras University, Chennai, TN",
-};
-
-export const honors = [
-  { title: "Team Engagement Leader", org: "OneDot Media" },
-  { title: "Pioneer Organizer", org: "SIVET College — Inaugural Symposium" },
-  { title: "Overall Excellence Awardee", org: "PG — Madras University" },
-  { title: "Zonal Player — Volleyball", org: "UG — Annai Veilankanni's College" },
-  { title: "Sports Captain", org: "UG — Annai Veilankanni's College" },
-  { title: "Art Maestro!", org: "Higher Secondary School" },
-];
-
 export const metrics = [
   { value: 250, suffix: "+", label: "Projects Delivered", hint: "Across every discipline" },
   { value: 25, suffix: "+", label: "Brands Built", hint: "From identity to voice" },
@@ -295,24 +280,28 @@ export const futureVisions = [
     icon: "ai",
     tag: "AI",
     title: "AI-Powered Creativity",
+    image: "/images/AI-Powered Creativity.jpg",
     desc: "Blending human taste with machine speed to make more, better, faster.",
   },
   {
     icon: "globe",
     tag: "Global",
     title: "Building Global Brands",
+    image: "/images/Building Global Brands.jpg",
     desc: "Taking strong regional brands to markets far beyond their borders.",
   },
   {
     icon: "users",
     tag: "People",
     title: "High-Performance Teams",
+    image: "/images/High-Performance Teams.jpg",
     desc: "Leading creative teams that ship with speed and soul.",
   },
   {
     icon: "spark",
     tag: "Growth",
     title: "Continuous Learning",
+    image: "/images/Continuous Learning.jpg",
     desc: "The studio as a school — every project makes us sharper.",
   },
 ];

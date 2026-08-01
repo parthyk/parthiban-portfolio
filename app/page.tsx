@@ -5,7 +5,6 @@ import Hero from "@/components/Hero";
 import ChapterDesigner from "@/components/ChapterDesigner";
 import Portfolio from "@/components/Portfolio";
 import ChapterLearning from "@/components/ChapterLearning";
-import ChapterEducation from "@/components/ChapterEducation";
 import ChapterTurningPoint from "@/components/ChapterTurningPoint";
 import ChapterTeamLead from "@/components/ChapterTeamLead";
 import ChapterCreativeHead from "@/components/ChapterCreativeHead";
@@ -27,7 +26,6 @@ export default function Home() {
         <ChapterDesigner />
         <Portfolio />
         <ChapterLearning />
-        <ChapterEducation />
         <ChapterTurningPoint />
         <ChapterTeamLead />
         <ChapterCreativeHead />
