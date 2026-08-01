@@ -38,7 +38,7 @@ export default function Hero() {
       data-chapter="00"
       data-accent="stone"
       onMouseMove={onMouseMove}
-      className="relative flex min-h-screen flex-col overflow-hidden"
+      className="relative flex min-h-screen flex-col gap-8 overflow-hidden"
     >
       <motion.div
         className="pointer-events-none absolute inset-0"
@@ -101,17 +101,18 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 1.3, ease: EASE }}
-          className="mt-10"
+          className="mt-12 mb-6"
         >
           <Image
             src="/images/parthiban.jpg"
             alt={`Portrait of ${profile.name}`}
-            width={112}
-            height={112}
-            className="h-28 w-28 rounded-full object-cover"
+            width={128}
+            height={128}
+            className="h-32 w-32 rounded-full object-cover"
             style={{
               border: "2px solid var(--accent)",
-              boxShadow: "0 0 0 8px var(--accent-soft)",
+              boxShadow:
+                "0 0 0 10px var(--accent-soft), 0 24px 60px -24px var(--glow)",
             }}
           />
         </motion.div>
