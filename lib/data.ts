@@ -5,8 +5,8 @@ export const profile = {
   email: "parthybank@gmail.com",
   phone: "+91 9789071079",
   linkedin: "https://www.linkedin.com/in/parthyk",
-  instagram: "https://www.instagram.com/parthibank",
-  instagramHandle: "@parthibank",
+  instagram: "https://www.instagram.com/parthybank",
+  instagramHandle: "@parthybank",
   behance: "https://www.behance.net/parthyk",
 };
 
