@@ -164,3 +164,7 @@ body {
 .animate-scroll-dot {
   animation: scroll-dot 2.2s ease-in-out infinite;
 }
+
+.items-end {
+  align-items: center;
+}
