@@ -27,11 +27,11 @@ export default function ChapterDesigner() {
   };
 
   return (
-    <Chapter id="chapter-01" num="01" title="The Designer" accent="blue" years="2015" sticky>
+    <Chapter id="chapter-01" num="01" title="The Designer" accent="blue" years="2015">
       <div className="grid gap-14 lg:grid-cols-12 lg:gap-10" onMouseMove={onMove}>
         <div className="lg:col-span-7">
           <SplitText
-            lines={["I started", "not by leading people.", "I started", "moving pixels."]}
+            lines={["I started", "Not by leading people.", "I started", "Moving pixels."]}
             className="display text-[clamp(2rem,5.4vw,3.9rem)]"
           />
 

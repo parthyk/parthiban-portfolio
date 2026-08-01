@@ -11,9 +11,9 @@ export default function Philosophy() {
       <SplitText
         lines={[
           "Good Designers",
-          "create visuals.",
+          "Create visuals.",
           "Great Leaders",
-          "create opportunities.",
+          "Create opportunities.",
         ]}
         className="display text-[clamp(2rem,5.4vw,4rem)]"
       />

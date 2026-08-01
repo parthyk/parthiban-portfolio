@@ -44,7 +44,7 @@ export default function ChapterCreativeHead() {
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <SplitText
-            lines={["Creativity,", "compounded.", "That's the job."]}
+            lines={["Creativity,", "Compounded.", "That's the job."]}
             className="display text-[clamp(1.9rem,4.6vw,3.4rem)]"
           />
           <Reveal delay={0.15}>

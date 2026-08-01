@@ -67,9 +67,9 @@ export default function Contact() {
           <SplitText
             lines={[
               "My journey started",
-              "with a single pixel.",
+              "With a single pixel.",
               "The next chapter",
-              "could start with your brand.",
+              "Could start with your brand.",
             ]}
             className="display text-[clamp(2rem,5.6vw,4.2rem)]"
           />
