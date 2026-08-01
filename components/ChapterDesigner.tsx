@@ -31,7 +31,7 @@ export default function ChapterDesigner() {
       <div className="grid gap-14 lg:grid-cols-12 lg:gap-10" onMouseMove={onMove}>
         <div className="lg:col-span-7">
           <SplitText
-            lines={["I started", "Not by leading people.", "I started", "Moving pixels."]}
+            lines={["I started", "Not by Leading People.", "I Started", "Moving Pixels."]}
             className="display text-[clamp(2rem,5.4vw,3.9rem)]"
           />
 
@@ -63,7 +63,7 @@ export default function ChapterDesigner() {
             className="relative rounded-3xl border border-line bg-card p-6 shadow-[var(--shadow)]"
           >
             <div className="flex items-center justify-between border-b border-line pb-3">
-              <span className="label">Sketchbook — 2015</span>
+              <span className="label">My Sketchbook — 2015</span>
               <span
                 className="inline-block h-2 w-2 rounded-full"
                 style={{ backgroundColor: "var(--accent)" }}
@@ -71,18 +71,18 @@ export default function ChapterDesigner() {
             </div>
             <div className="space-y-5 py-5">
               <p className="font-mono text-xs leading-relaxed text-muted">
-                brief: “make it look premium”
+                Brief: “make it look premium”
               </p>
               <div className="h-px" style={{ backgroundColor: "var(--line)" }} />
               <p className="font-mono text-xs leading-relaxed text-muted">
-                note to self: never stop learning the craft.
+                Note to self: never stop learning the craft.
               </p>
               <div className="h-px" style={{ backgroundColor: "var(--line)" }} />
               <PixelGrid className="w-28 opacity-60" />
             </div>
             <div className="border-t border-line pt-3">
               <span className="font-serif text-sm italic text-ink-soft">
-                try · fail · learn · repeat
+                Try · Fail · Learn · Repeat
               </span>
             </div>
           </motion.div>

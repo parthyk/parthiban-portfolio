@@ -38,7 +38,7 @@ export default function ChapterTeamLead() {
       <div className="mb-14 grid gap-6 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <SplitText
-            lines={["Instead of software,", "Show people."]}
+            lines={["Instead of Software,", "Show People."]}
             className="display text-[clamp(2rem,5.2vw,3.8rem)]"
           />
         </div>
