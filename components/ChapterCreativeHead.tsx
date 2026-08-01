@@ -81,11 +81,11 @@ export default function ChapterCreativeHead() {
             >
               <div className="relative mb-10">
                 <div
-                  className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2"
+                  className="absolute left-0 right-0 top-[34px] h-px"
                   style={{ backgroundColor: "var(--line)" }}
                 />
                 <motion.div
-                  className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 origin-left"
+                  className="absolute left-0 right-0 top-[34px] h-px origin-left"
                   style={{ scaleX, backgroundColor: "var(--accent)" }}
                 />
                 <div className="relative flex items-start justify-between">
