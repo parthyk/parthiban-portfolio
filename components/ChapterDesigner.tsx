@@ -92,12 +92,12 @@ export default function ChapterDesigner() {
               <div key={t.company} className="relative pl-6">
                 {i < designerTimeline.length - 1 && (
                   <span
-                    className="absolute left-[3px] top-3 h-full w-px"
+                    className="absolute left-[3px] top-[15px] h-full w-px"
                     style={{ backgroundColor: "var(--line-strong)" }}
                   />
                 )}
                 <span
-                  className="absolute left-0 top-1.5 block h-[7px] w-[7px] rounded-full"
+                  className="absolute left-0 top-[11px] block h-[7px] w-[7px] rounded-full"
                   style={{ backgroundColor: "var(--accent)" }}
                 />
                 <Reveal delay={i * 0.08}>
