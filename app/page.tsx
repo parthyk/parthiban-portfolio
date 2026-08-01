@@ -1,5 +1,6 @@
 import AmbientGlow from "@/components/AmbientGlow";
 import ProgressBar from "@/components/ProgressBar";
+import ScrollToTop from "@/components/ScrollToTop";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ChapterDesigner from "@/components/ChapterDesigner";
@@ -20,6 +21,7 @@ export default function Home() {
     <>
       <AmbientGlow />
       <ProgressBar />
+      <ScrollToTop />
       <Navbar />
       <main>
         <Hero />
