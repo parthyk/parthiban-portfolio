@@ -26,16 +26,16 @@ export const chapters = [
 
 export const designerTimeline = [
   {
+    period: "2016 — Present",
+    company: "OneDot Media",
+    role: "Creative Head",
+    note: "UI · Brand · Social",
+  },
+  {
     period: "2015 — 2016",
     company: "TryAround",
     role: "Creative Designer",
-    note: "Freelance — first pixels",
-  },
-  {
-    period: "2016 — 2019",
-    company: "OneDot Media",
-    role: "Creative Designer",
-    note: "UI · Brand · Social",
+    note: "Freelance — First Pixels",
   },
 ];
 
